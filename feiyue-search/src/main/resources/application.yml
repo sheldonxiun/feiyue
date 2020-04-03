@@ -1,0 +1,25 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: feiyue-search
+  data:
+    elasticsearch:
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.232.139:9300
+  jackson:
+    default-property-inclusion: non_null # 配置json处理时忽略空值
+  rabbitmq:
+    host: 192.168.232.139
+    port: 5672
+    username: feiyue
+    password: feiyue
+    virtual-host: /feiyue
+eureka:
+  client:
+    registry-fetch-interval-seconds: 10
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 15 # 10秒不发送就过期

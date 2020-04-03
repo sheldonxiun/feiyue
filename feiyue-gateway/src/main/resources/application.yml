@@ -1,0 +1,40 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: feiyue-gateway
+eureka:
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+zuul:
+  prefix: /api
+  routes:
+    feiyue-item-service: /item/** # 路由到商品微服务
+    feiyue-search: /search/** # 路由到搜索微服务
+    feiyue-user-service: /user/** # 用户微服务
+    feiyue-auth-service: /auth/** # 授权中心微服务
+    feiyue-cart: /cart/** # 购物车微服务
+    feiyue-order: /order/** # 订单微服务
+  add-host-header: true
+  sensitive-headers: #覆盖默认敏感头信息,zuul网关默认过滤了cookie,PreDecorationFilter
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+feiyue:
+  jwt:
+    pubKeyPath: D:\\users\\rsa\\rsa.pub # 公钥地址
+    cookieName: FEIYUE_TOKEN
+  filter:
+    allowPaths: # String类型的list集合
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

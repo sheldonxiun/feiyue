@@ -1,0 +1,16 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: feiyue-sms
+  rabbitmq:
+    host: 192.168.232.139
+    username: feiyue
+    password: feiyue
+    virtual-host: /feiyue
+feiyue:
+  sms:
+    accessKeyId: LTAI4Fj9qkFX6GKSXUJn2kJH # 你自己的accessKeyId
+    accessKeySecret: HzQnoZrUm052kPCTgBJU9IznyCVkF6 # 你自己的AccessKeySecret
+    signName: 非乐 # 签名名称
+    verifyCodeTemplate: SMS_182677672 # 模板名称
